@@ -3,7 +3,7 @@ import { getTermino, terminos } from "@/data/vocabularioData";
 import { TechniqueVisual } from "@/components/taekwondo/TechniqueVisual";
 import { createPageTitle } from "@/utils/pageTitle";
 
-export const Route = createFileRoute("/vocabulario_/$slug")({
+export const Route = createFileRoute("/vocabulario/$slug")({
   loader: ({ params }) => {
     const termino = getTermino(params.slug);
     if (!termino) throw notFound();

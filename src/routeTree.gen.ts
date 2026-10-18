@@ -8,13 +8,13 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/root.tsx'
+import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as FundacionRouteImport } from './routes/fundacion'
 import { Route as LogrosRouteImport } from './routes/logros'
 import { Route as PoomsaeRouteImport } from './routes/poomsae'
 import { Route as VocabularioRouteImport } from './routes/vocabulario'
-import { Route as VocabularioSlugRouteImport } from './routes/vocabularioSlug.tsx'
+import { Route as VocabularioSlugRouteImport } from './routes/vocabulario.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -42,9 +42,9 @@ const VocabularioRoute = VocabularioRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const VocabularioSlugRoute = VocabularioSlugRouteImport.update({
-  id: '/vocabulario_/$slug',
-  path: '/vocabulario/$slug',
-  getParentRoute: () => rootRouteImport,
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => VocabularioRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -52,7 +52,7 @@ export interface FileRoutesByFullPath {
   '/fundacion': typeof FundacionRoute
   '/logros': typeof LogrosRoute
   '/poomsae': typeof PoomsaeRoute
-  '/vocabulario': typeof VocabularioRoute
+  '/vocabulario': typeof VocabularioRouteWithChildren
   '/vocabulario/$slug': typeof VocabularioSlugRoute
 }
 export interface FileRoutesByTo {
@@ -60,7 +60,7 @@ export interface FileRoutesByTo {
   '/fundacion': typeof FundacionRoute
   '/logros': typeof LogrosRoute
   '/poomsae': typeof PoomsaeRoute
-  '/vocabulario': typeof VocabularioRoute
+  '/vocabulario': typeof VocabularioRouteWithChildren
   '/vocabulario/$slug': typeof VocabularioSlugRoute
 }
 export interface FileRoutesById {
@@ -69,8 +69,8 @@ export interface FileRoutesById {
   '/fundacion': typeof FundacionRoute
   '/logros': typeof LogrosRoute
   '/poomsae': typeof PoomsaeRoute
-  '/vocabulario': typeof VocabularioRoute
-  '/vocabulario_/$slug': typeof VocabularioSlugRoute
+  '/vocabulario': typeof VocabularioRouteWithChildren
+  '/vocabulario/$slug': typeof VocabularioSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -96,7 +96,7 @@ export interface FileRouteTypes {
     | '/logros'
     | '/poomsae'
     | '/vocabulario'
-    | '/vocabulario_/$slug'
+    | '/vocabulario/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -104,8 +104,7 @@ export interface RootRouteChildren {
   FundacionRoute: typeof FundacionRoute
   LogrosRoute: typeof LogrosRoute
   PoomsaeRoute: typeof PoomsaeRoute
-  VocabularioRoute: typeof VocabularioRoute
-  VocabularioSlugRoute: typeof VocabularioSlugRoute
+  VocabularioRoute: typeof VocabularioRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -145,23 +144,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VocabularioRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/vocabulario_/$slug': {
-      id: '/vocabulario_/$slug'
-      path: '/vocabulario/$slug'
+    '/vocabulario/$slug': {
+      id: '/vocabulario/$slug'
+      path: '/$slug'
       fullPath: '/vocabulario/$slug'
       preLoaderRoute: typeof VocabularioSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof VocabularioRoute
     }
   }
 }
+
+interface VocabularioRouteChildren {
+  VocabularioSlugRoute: typeof VocabularioSlugRoute
+}
+
+const VocabularioRouteChildren: VocabularioRouteChildren = {
+  VocabularioSlugRoute: VocabularioSlugRoute,
+}
+
+const VocabularioRouteWithChildren = VocabularioRoute._addFileChildren(
+  VocabularioRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   FundacionRoute: FundacionRoute,
   LogrosRoute: LogrosRoute,
   PoomsaeRoute: PoomsaeRoute,
-  VocabularioRoute: VocabularioRoute,
-  VocabularioSlugRoute: VocabularioSlugRoute,
+  VocabularioRoute: VocabularioRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

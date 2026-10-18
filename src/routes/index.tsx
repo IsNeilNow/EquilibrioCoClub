@@ -8,6 +8,7 @@ import {
 import { HomeClosingSection } from "@/components/sections/HomeClosingSection";
 import { HomeCountriesSection } from "@/components/sections/HomeCountriesSection";
 import { HomeCultureSection } from "@/components/sections/HomeCultureSection";
+import { HomeDojoArcade } from "@/components/sections/HomeDojoArcade";
 import { HomeHistorySection } from "@/components/sections/HomeHistorySection";
 import { KicksSection } from "@/components/sections/KicksSection";
 import { MusashiSection } from "@/components/sections/MusashiSection";
@@ -45,6 +46,7 @@ function Home() {
     <div className="home-experience">
       <HomeAtmosphere />
       <HomeHeroSection />
+      <HomeDojoArcade />
       <HomeHistorySection />
       <HomeFoundationSection />
       <HomePrinciplesSection />

@@ -2,7 +2,14 @@ import hero from "@/assets/hero.jpg";
 import { grados, principios } from "@/data/home";
 import type { CSSProperties, PointerEvent } from "react";
 
-const beltStages = ["Inicio", "Raíz", "Crecimiento", "Altura", "Control", "Madurez"];
+const beltStages = [
+  "Inicio",
+  "Raíz",
+  "Crecimiento",
+  "Altura",
+  "Control",
+  "Madurez",
+];
 
 export function HomeHeroSection() {
   function tiltHeadline(event: PointerEvent<HTMLElement>) {
@@ -57,7 +64,7 @@ export function HomeHeroSection() {
             태권도 · Fundación Equilibrio · Colombia
           </p>
           <h1 className="home-hero__title reveal mt-6 max-w-4xl text-5xl uppercase leading-[0.91] sm:text-7xl lg:text-[7.5rem]">
-            El camino del <span>pie</span>, la <span>mano</span> y el espíritu
+            El camino de la <span>PATADA </span> y del <span>PUÑO</span>
           </h1>
           <p className="reveal mt-7 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Taekwondo es arte marcial, deporte y práctica de formación. Un
@@ -66,9 +73,12 @@ export function HomeHeroSection() {
           </p>
           <div className="reveal mt-10 flex flex-wrap gap-8 border-t border-border/70 pt-6 sm:gap-12">
             {[
+              ["1945", "Nacimiento de escuelas"],
               ["1955", "Nombre unificado"],
+              ["1973", "Federación Mundial"],
               ["2000", "Deporte olímpico"],
               ["+80", "Países federados"],
+              ["+210", "Alcance global"],
             ].map(([number, label]) => (
               <div key={label} className="home-hero__stat">
                 <p className="font-display text-3xl text-primary sm:text-4xl">
@@ -143,9 +153,13 @@ export function HomeFoundationSection() {
             ["04", "Hosinsul", "Defensa · control y cuidado"],
           ].map(([number, title, description]) => (
             <div key={title} className="home-pillar bg-background/90 p-5">
-              <span className="font-display text-xs text-primary">{number}</span>
+              <span className="font-display text-xs text-primary">
+                {number}
+              </span>
               <h3 className="mt-5 font-display text-2xl uppercase">{title}</h3>
-              <p className="mt-2 text-xs text-muted-foreground">{description}</p>
+              <p className="mt-2 text-xs text-muted-foreground">
+                {description}
+              </p>
             </div>
           ))}
         </div>
@@ -222,10 +236,12 @@ export function HomeBeltsSection() {
             <li
               key={grade.c}
               className="home-belt group relative flex min-w-0 flex-col items-center text-center"
-              style={{
-                "--belt-color": grade.hex,
-                "--belt-node-size": "clamp(4.75rem, 6.5vw, 5.75rem)",
-              } as CSSProperties}
+              style={
+                {
+                  "--belt-color": grade.hex,
+                  "--belt-node-size": "clamp(4.75rem, 6.5vw, 5.75rem)",
+                } as CSSProperties
+              }
             >
               <span className="home-belt__node">
                 <span className="home-belt__disc" />
