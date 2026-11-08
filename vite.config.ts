@@ -5,9 +5,10 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import tailwindcss from "@tailwindcss/vite";
 
 const srcDirectory = fileURLToPath(new URL("./src", import.meta.url));
+const githubPagesBase = "/EquilibrioCoClub/";
 
 export default defineConfig({
-  base: "/EquilibrioCoClub/",
+  base: githubPagesBase,
   plugins: [
     tailwindcss(),
     tanstackStart({
