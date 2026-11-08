@@ -306,6 +306,94 @@ iframe:focus-visible {
   .eyebrow {
     letter-spacing: 0.22em;
   }
+
+  @media (max-width: 767px) {
+    .route-experience,
+    .home-experience,
+    .poomsae-page {
+      overflow-x: clip;
+    }
+
+    .route-ambient-3d {
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .route-experience h1,
+    .route-experience h2,
+    .route-experience h3,
+    .route-experience p,
+    .route-experience a {
+      overflow-wrap: anywhere;
+    }
+
+    .poomsae-hero h1 {
+      max-width: 8ch;
+      font-size: clamp(3.2rem, 16vw, 5rem);
+    }
+
+    .poomsae-hero__glyph {
+      right: -5rem;
+      top: 42%;
+      font-size: 15rem;
+    }
+
+    .poomsae-focus {
+      margin-top: 2rem;
+    }
+
+    .poomsae-focus > article {
+      min-width: 0;
+    }
+
+    .poomsae-row {
+      grid-template-columns: auto auto minmax(0, 1fr);
+    }
+
+    .poomsae-row strong,
+    .poomsae-row span {
+      min-width: 0;
+    }
+
+    .poomsae-row strong {
+      overflow-wrap: anywhere;
+      font-size: 0.9rem;
+    }
+
+    .poomsae-row span:last-child {
+      overflow-wrap: anywhere;
+    }
+
+    .poomsae-row span:last-child span {
+      font-size: 0.72rem;
+      line-height: 1.35;
+    }
+
+    .technique-academy__card video {
+      aspect-ratio: 16 / 9;
+    }
+
+    .breaking-board-intro__instruction {
+      bottom: 5.5rem;
+      width: calc(100% - 2rem);
+      text-align: center;
+      font-size: clamp(0.75rem, 3vw, 0.95rem);
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1100px) {
+    .poomsae-focus {
+      grid-template-columns: 1fr;
+    }
+
+    .poomsae-video {
+      min-height: 0;
+    }
+
+    .identity-lab__display {
+      grid-template-columns: minmax(7rem, 9rem) minmax(0, 1fr);
+    }
+  }
   .country-panel > div:nth-of-type(2) > div {
     gap: 0.75rem;
   }

@@ -17,10 +17,10 @@ export function SiteNav() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex max-w-[90rem] items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
+      <div className="mx-auto flex max-w-[90rem] items-center justify-between gap-3 px-4 py-3 sm:px-8 sm:py-4 lg:px-10">
         <Link to="/" className="group flex items-center gap-3">
           <EquilibrioMark />
-          <span className="font-display text-xl uppercase tracking-[0.3em]">
+          <span className="font-display text-base uppercase tracking-[0.2em] sm:text-xl sm:tracking-[0.3em]">
             Equilibrio
           </span>
         </Link>
@@ -92,7 +92,7 @@ export function SiteFooter() {
           <p>Medellín, Colombia</p>
           <p>CRR 77B #53-26</p>
           <p>4216611</p>
-          <a className="mt-2 block hover:text-foreground" href="mailto:equilibrioartesmarciales@gmail.com">
+          <a className="mt-2 block break-words hover:text-foreground" href="mailto:equilibrioartesmarciales@gmail.com">
             equilibrioartesmarciales@gmail.com
           </a>
         </div>
