@@ -258,8 +258,8 @@ export function HomeBeltsSection() {
               <span className="mt-4 text-[0.65rem] text-muted-foreground/70">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <span className="sr-only">
-                {grade.n}. {grade.t}
+              <span className="mt-3 max-w-24 text-[0.65rem] leading-relaxed text-muted-foreground/80">
+                {grade.t}
               </span>
             </li>
           ))}

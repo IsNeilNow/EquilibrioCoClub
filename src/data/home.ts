@@ -38,37 +38,37 @@ export const grados = [
   {
     c: "Blanco",
     n: "10º–9º Gup",
-    t: "Pureza, el inicio del camino.",
+    t: "Pureza.",
     hex: "#f5f5f5",
   },
   {
     c: "Amarillo",
     n: "8º–7º Gup",
-    t: "La tierra donde germina la semilla.",
+    t: "Sol naciente o semilla creciendo.",
     hex: "#facc15",
   },
   {
     c: "Verde",
     n: "6º–5º Gup",
-    t: "El crecimiento de la planta.",
+    t: "Árbol creciente.",
     hex: "#16a34a",
   },
   {
     c: "Azul",
     n: "4º–3º Gup",
-    t: "El cielo al que se aspira.",
+    t: "Cielo.",
     hex: "#2563eb",
   },
   {
     c: "Rojo",
     n: "2º–1º Gup",
-    t: "Peligro: control y advertencia.",
+    t: "Ocaso.",
     hex: "#dc2626",
   },
   {
     c: "Negro",
     n: "1er Dan+",
-    t: "Madurez, opuesto al blanco.",
+    t: "Roca.",
     hex: "#111111",
   },
 ];
@@ -154,23 +154,6 @@ export const paises: IPais[] = [
     enfoque: "Competencia, educación física y circuitos abiertos.",
     figura: "Jhoon Rhee, pionero de la difusión nacional",
     colores: ["#b22234", "#ffffff", "#3c3b6e"],
-  },
-  {
-    id: "es",
-    nombre: "España",
-    bandera: "🇪🇸",
-    desde: "1968",
-    historia:
-      "El maestro Han Chang Kim introdujo el Taekwondo en Madrid a finales de los 60. En 1971 se crea la Federación Española y España se convierte en una de las potencias europeas, con títulos mundiales y europeos sostenidos desde los años 80.",
-    hitos: [
-      "1968 · Primeras clases en Madrid",
-      "1971 · Federación Española",
-      "1980s · Potencia europea",
-    ],
-    legado: "Una de las escuelas más constantes del Taekwondo europeo.",
-    enfoque: "Alto rendimiento, arbitraje y formación federativa.",
-    figura: "Han Chang Kim, impulsor de las primeras escuelas",
-    colores: ["#aa151b", "#f1bf00", "#aa151b"],
   },
   {
     id: "mx",

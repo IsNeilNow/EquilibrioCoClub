@@ -89,9 +89,12 @@ export function SiteFooter() {
         </div>
         <div className="text-sm text-muted-foreground">
           <p className="eyebrow mb-3">Contacto</p>
-          <p>Bogotá D.C., Colombia</p>
-          <p>contacto@fundacionequilibrio.co</p>
-          <p>+57 300 000 0000</p>
+          <p>Medellín, Colombia</p>
+          <p>CRR 77B #53-26</p>
+          <p>4216611</p>
+          <a className="mt-2 block hover:text-foreground" href="mailto:equilibrioartesmarciales@gmail.com">
+            equilibrioartesmarciales@gmail.com
+          </a>
         </div>
         <div className="text-sm text-muted-foreground">
           <p className="eyebrow mb-3">Referencias</p>

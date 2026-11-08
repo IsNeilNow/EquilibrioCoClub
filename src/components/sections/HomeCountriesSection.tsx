@@ -2,7 +2,7 @@ import { useState, type CSSProperties, type KeyboardEvent } from "react";
 import { paises } from "@/data/home";
 import type { IPais } from "@/interfaces/IPais";
 
-const featuredCountries = ["co", "kr", "es", "mx"]
+const featuredCountries = ["co", "kr", "mx"]
   .map((id) => paises.find((country) => country.id === id))
   .filter((country) => country !== undefined);
 

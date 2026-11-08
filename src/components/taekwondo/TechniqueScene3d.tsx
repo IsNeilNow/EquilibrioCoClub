@@ -230,11 +230,6 @@ function Scene({
       <Environment>
         <Lightformer intensity={1.8} position={[-4, 5, 3]} scale={[6, 6, 1]} />
       </Environment>
-      <gridHelper
-        args={[7, 14, colors.primary, colors.border]}
-        position={[0, -1.7, 0]}
-      />
-      <axesHelper args={[compact ? 2.2 : 3]} position={[-2.2, -1.68, 1.2]} />
       <Mannequin
         technique={technique}
         color={colors.primary}

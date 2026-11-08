@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import dojang from "@/assets/dojang.jpg";
-import maestro1 from "@/assets/maestro-1.jpg";
-import maestro2 from "@/assets/maestro-2.jpg";
-import maestro3 from "@/assets/maestro-3.jpg";
-import maestro4 from "@/assets/maestro-4.jpg";
+import tatianaPhoto from "@/assets/maestros/TatianaMaestra.jpeg";
+import paolaPhoto from "@/assets/maestros/PaolaMaestra.jpeg";
+import { ClubProgram } from "@/components/sections/HomeClubProgram";
+import { HomeIdentityLab } from "@/components/sections/HomeIdentityLab";
+import { HomeAcademyOverview } from "@/components/sections/HomeAcademyOverview";
 import { createPageTitle } from "@/utils/pageTitle";
 
 export const Route = createFileRoute("/fundacion")({
@@ -33,64 +34,52 @@ export const Route = createFileRoute("/fundacion")({
 
 const maestros = [
   {
-    nombre: "Mtro. Andrés Felipe Rojas",
-    foto: maestro1,
-    rango: "5º Dan · Kukkiwon",
-    rol: "Director técnico",
+    nombre: "Nelson Andrés Pérez Zuluaga",
+    foto: undefined,
+    rango: "Maestro fundador",
+    rol: "Fundador y creador de VAIPER",
     descripcion:
-      "Fundador del programa competitivo de Equilibrio. Trabaja el kyorugi moderno con énfasis en lectura táctica y preparación mental.",
+      "Fundador del Club Equilibrio el 12 de junio de 2009 y creador del Sistema de Combate VAIPER.",
     estudios: [
-      "Licenciado en Educación Física — Universidad Pedagógica Nacional",
-      "Entrenador Nivel III — Federación Colombiana de Taekwondo",
-      "Certificación de árbitro nacional WT",
+      "Maestro fundador del Club Equilibrio",
+      "Creador del Sistema de Combate VAIPER",
     ],
-    email: "andres.rojas@fundacionequilibrio.co",
-    tel: "+57 300 111 2233",
   },
   {
-    nombre: "Mtra. Laura Catalina Mejía",
-    foto: maestro2,
-    rango: "4º Dan · Kukkiwon",
-    rol: "Directora de poomsae",
+    nombre: "Tatiana Montoya Ortiz",
+    foto: tatianaPhoto,
+    rango: "Cinturón Negro 1.er Dan",
+    rol: "Segunda maestra",
     descripcion:
-      "Especialista en formas reconocidas y libres. Dirige la escuela infantil y el proceso de exámenes de grado.",
+      "Psicóloga y competidora en diferentes modalidades dentro de la Liga de Taekwondo de Antioquia.",
     estudios: [
-      "Profesional en Ciencias del Deporte — Universidad de Ciencias Aplicadas",
-      "Seminario internacional de Poomsae — Kukkiwon, Seúl",
-      "Diplomado en pedagogía infantil deportiva",
+      "Psicología",
+      "Taekwondo, Judo, Muay Thai y Karate",
     ],
-    email: "laura.mejia@fundacionequilibrio.co",
-    tel: "+57 301 222 3344",
   },
   {
-    nombre: "Mtro. Julián Esteban Cárdenas",
-    foto: maestro3,
-    rango: "3er Dan · Kukkiwon",
-    rol: "Preparación física",
+    nombre: "Paola Andrea Apaza Álvaro",
+    foto: paolaPhoto,
+    rango: "Cinturón Negro 1.er Dan",
+    rol: "Tercera maestra",
     descripcion:
-      "Responsable del acondicionamiento, prevención de lesiones y periodización para atletas de selección departamental.",
+      "Ingeniera en Sistemas y competidora en Open Internacional y competencias interclubes de artes marciales.",
     estudios: [
-      "Fisioterapeuta — Universidad Nacional de Colombia",
-      "Especialización en entrenamiento deportivo",
-      "Certificación en primeros auxilios deportivos",
+      "Ingeniería en Sistemas",
+      "Taekwondo, Hapkido, Kumdo y Lucha",
     ],
-    email: "julian.cardenas@fundacionequilibrio.co",
-    tel: "+57 302 333 4455",
   },
   {
-    nombre: "Mtra. Sofía Alejandra Torres",
-    foto: maestro4,
-    rango: "2º Dan · Kukkiwon",
-    rol: "Cultura coreana y arbitraje",
+    nombre: "Manuela Serna Velásquez",
+    foto: undefined,
+    rango: "Cinturón Negro 1.er Dan",
+    rol: "Profesora",
     descripcion:
-      "Enseña terminología coreana, etiqueta del dojang y protocolo de competencia. Árbitro regional en activo.",
+      "Ingeniera en Sistemas y competidora en Open Internacional e Intercolegiados.",
     estudios: [
-      "Licenciada en Lenguas Modernas",
-      "Curso de coreano básico — Centro Cultural Coreano en Colombia",
-      "Curso de arbitraje regional WT",
+      "Ingeniería en Sistemas",
+      "Taekwondo, Defensa Personal Militar, Defensa Personal Femenina y VAIPER",
     ],
-    email: "sofia.torres@fundacionequilibrio.co",
-    tel: "+57 304 444 5566",
   },
 ];
 
@@ -116,24 +105,31 @@ function Fundacion() {
             herramienta social, educativa y competitiva para niños, jóvenes y
             adultos de nuestras comunidades.
           </p>
+          <p className="reveal mt-8 max-w-2xl font-display text-xl uppercase tracking-[0.12em] text-primary sm:text-2xl">
+            Del débil, fuerte. Del fuerte, noble.
+          </p>
         </div>
       </section>
 
       <section className="mx-auto max-w-[90rem] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
+        <div className="mb-12 grid gap-6 border-y border-border py-8 md:grid-cols-[auto_1fr_1fr] md:items-center">
+          <p className="font-display text-6xl text-primary">2009</p>
+          <div>
+            <p className="eyebrow">12 de junio · Punto de partida</p>
+            <h2 className="mt-2 text-2xl uppercase">Los orígenes de Equilibrio</h2>
+          </div>
+          <p className="text-sm leading-relaxed text-muted-foreground">
+            Nelson Andrés Pérez Zuluaga fundó el club para generar entornos
+            saludables, fomentar el Taekwondo, promover la recreación y
+            convertir las artes marciales en una herramienta de transformación
+            social.
+          </p>
+        </div>
         <div className="grid gap-px bg-border md:grid-cols-3">
           {[
-            [
-              "Misión",
-              "Formar seres humanos disciplinados y solidarios a través de la práctica seria del Taekwondo, con acceso para todos los estratos.",
-            ],
-            [
-              "Visión",
-              "Ser referente nacional en formación técnica y humana, llevando atletas a selección Colombia y maestros a la docencia.",
-            ],
-            [
-              "Valores",
-              "Cortesía, integridad, perseverancia, autocontrol y espíritu indomable — no como lema, sino como conducta diaria.",
-            ],
+            ["Misión", "Potencializar las capacidades psicosociales y emocionales de cada integrante, promoviendo el uso adecuado del tiempo libre y la formación en valores, disciplina y respeto."],
+            ["Visión", "Generar interacción y formación de líderes, fomentar la inversión del tiempo libre y brindar un entorno sano y libre de costos para toda la población."],
+            ["Fundación", "Asociación deportiva de derecho privado, sin ánimo de lucro, fundada el 12 de junio de 2009 por Nelson Andrés Pérez Zuluaga."],
           ].map(([t, d]) => (
             <div key={t} className="bg-background p-8">
               <h2 className="text-2xl uppercase text-primary">{t}</h2>
@@ -148,8 +144,8 @@ function Fundacion() {
           <p className="eyebrow">Cuerpo técnico</p>
           <h2 className="mt-3 text-4xl uppercase">Nuestros maestros</h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            Datos de referencia — edítalos con la información real de la
-            fundación.
+            Formación, experiencia y disciplinas declaradas por el Club
+            Equilibrio.
           </p>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
@@ -160,14 +156,20 @@ function Fundacion() {
               >
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div className="flex items-center gap-4">
-                    <img
-                      src={m.foto}
-                      alt={`Retrato de ${m.nombre}`}
-                      width={56}
-                      height={56}
-                      loading="lazy"
-                      className="h-14 w-14 shrink-0 rounded-full border border-border object-cover"
-                    />
+                    {m.foto ? (
+                      <img
+                        src={m.foto}
+                        alt={`Retrato de ${m.nombre}`}
+                        width={56}
+                        height={56}
+                        loading="lazy"
+                        className="h-14 w-14 shrink-0 rounded-full border border-border object-cover"
+                      />
+                    ) : (
+                      <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-dashed border-primary/60 font-display text-xs text-primary">
+                        EQ
+                      </span>
+                    )}
                     <div>
                       <h3 className="text-2xl uppercase">{m.nombre}</h3>
                       <p className="mt-1 font-display text-sm uppercase tracking-[0.2em] text-primary">
@@ -197,25 +199,20 @@ function Fundacion() {
                   ))}
                 </ul>
 
-                <div className="mt-6 flex flex-wrap gap-4 border-t border-border pt-5 text-sm">
-                  <a
-                    href={`mailto:${m.email}`}
-                    className="text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
-                  >
-                    {m.email}
-                  </a>
-                  <a
-                    href={`tel:${m.tel.replace(/\s/g, "")}`}
-                    className="text-muted-foreground hover:text-primary"
-                  >
-                    {m.tel}
-                  </a>
-                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
+      <section className="mx-auto max-w-[90rem] px-6 pt-16 sm:px-8 sm:pt-24 lg:px-10">
+        <p className="eyebrow">Nuestro club</p>
+        <h2 className="mt-3 text-4xl uppercase sm:text-6xl">
+          Identidad, formación y <span className="text-primary">camino.</span>
+        </h2>
+      </section>
+      <HomeIdentityLab />
+      <HomeAcademyOverview />
+      <ClubProgram />
     </div>
   );
 }

@@ -1,5 +1,15 @@
 import { lazy, Suspense } from "react";
-import { ScanLine } from "lucide-react";
+import {
+  ArrowUpRight,
+  CircleDot,
+  Footprints,
+  Hand,
+  HeartPulse,
+  RotateCw,
+  ScanLine,
+  Shield,
+  Wind,
+} from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 import type { ITechniqueVisualProps } from "@/interfaces/ITaekwondo";
 import { cn } from "@/lib/utils";
@@ -21,6 +31,27 @@ function motionFor(label: string, category?: string) {
   return "ready";
 }
 
+function VocabularySymbol({ motion }: { motion: string }) {
+  const symbols = {
+    kick: { icon: Footprints, caption: "pie" },
+    block: { icon: Shield, caption: "defensa" },
+    strike: { icon: Hand, caption: "puño" },
+    stance: { icon: CircleDot, caption: "base" },
+    bow: { icon: HeartPulse, caption: "respeto" },
+    turn: { icon: RotateCw, caption: "giro" },
+    ready: { icon: Wind, caption: "flujo" },
+  } as const;
+  const item = symbols[motion as keyof typeof symbols] ?? symbols.ready;
+  const Icon = item.icon;
+
+  return (
+    <span className="technique-visual__vocab-symbol">
+      <Icon aria-hidden="true" />
+      <small>{item.caption}</small>
+    </span>
+  );
+}
+
 export function TechniqueVisual({
   label,
   compact = false,
@@ -39,11 +70,20 @@ export function TechniqueVisual({
         compact ? "h-28 w-full" : "aspect-video w-full",
       )}
       role="img"
-      aria-label={`Demostración animada de ${label}`}
+      aria-label={
+        compact
+          ? `Símbolo de ${label}. Abre la ficha para ver la animación.`
+          : `Demostración animada de ${label}`
+      }
       data-motion={motion}
       data-technique={techniqueId}
     >
-      {isInView && (
+      {compact ? (
+        <div className="technique-visual__symbol" aria-hidden="true">
+          <VocabularySymbol motion={motion} />
+          <ArrowUpRight className="h-4 w-4" />
+        </div>
+      ) : isInView ? (
         <Suspense
           fallback={
             <div className="absolute inset-0 animate-pulse bg-muted/40" />
@@ -51,10 +91,9 @@ export function TechniqueVisual({
         >
           <TechniqueScene3D technique={techniqueId} compact={compact} />
         </Suspense>
-      )}
+      ) : null}
       <span className="pointer-events-none absolute left-3 top-3 z-10 flex items-center gap-1.5 font-display text-[10px] uppercase text-muted-foreground">
-        <ScanLine className="h-3 w-3 text-primary" aria-hidden />
-        Articulación 3D
+        {compact ? "Símbolo" : <><ScanLine className="h-3 w-3 text-primary" aria-hidden /> Articulación 3D</>}
       </span>
       <span className="pointer-events-none absolute bottom-3 right-3 z-10 max-w-[70%] truncate font-display text-[10px] uppercase text-muted-foreground">
         {label}

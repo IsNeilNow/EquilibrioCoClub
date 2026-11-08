@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import poomsaeImg from "@/assets/poomsae.jpg";
 import { TaegeukElement } from "@/components/taekwondo/TaegeukElement";
+import { TechniqueAcademySection } from "@/components/sections/TechniqueAcademySection";
 import { createPageTitle } from "@/utils/pageTitle";
 
 export const Route = createFileRoute("/poomsae")({
@@ -28,7 +29,7 @@ export const Route = createFileRoute("/poomsae")({
   component: Poomsae,
 });
 
-const PLAYLIST = "PL34C7AE8918444BA0";
+const PLAYLIST = "PLgjWu0wTERydqRT7PpnEMYsLE2tXUmK1j";
 
 type Forma = {
   n: string;
@@ -37,6 +38,7 @@ type Forma = {
   grado: string;
   significado: string;
   descripcion: string;
+  videoId: string;
   index: number;
 };
 
@@ -50,6 +52,7 @@ const formas: [Forma, ...Forma[]] = [
       "Representa el cielo y la luz: el origen de todo, el comienzo de la creación y del camino del practicante.",
     descripcion:
       "Movimientos básicos en ap seogi y ap kubi: defensa baja (arae makki), puñetazo medio (momtong jireugi), defensa media y patada frontal. Enseña el ritmo y la respiración inicial.",
+    videoId: "omSFb-pcBCw",
     index: 1,
   },
   {
@@ -61,6 +64,7 @@ const formas: [Forma, ...Forma[]] = [
       "El lago: serenidad interior y firmeza. La calma que oculta profundidad.",
     descripcion:
       "Se introduce la defensa alta (eolgul makki) y se repiten patadas frontales encadenadas con puñetazo. Trabaja la suavidad del movimiento sin perder fuerza.",
+    videoId: "5EL6ZlyYax0",
     index: 2,
   },
   {
@@ -72,6 +76,7 @@ const formas: [Forma, ...Forma[]] = [
       "El fuego y el sol: pasión, entusiasmo y energía constante en el entrenamiento.",
     descripcion:
       "Aparece el canto de mano (sonnal makki) y el dwit kubi. Combinaciones rápidas de patada frontal y doble puñetazo que exigen control del centro.",
+    videoId: "ajjltvy04OE",
     index: 3,
   },
   {
@@ -83,6 +88,7 @@ const formas: [Forma, ...Forma[]] = [
       "El trueno: poder y majestad. Ante el peligro se actúa con calma y valentía.",
     descripcion:
       "Incluye sonnal momtong makki, pyonsonkeut chireugi, patada lateral (yeop chagi) y defensa con giro. Es la forma donde la técnica se vuelve marcial.",
+    videoId: "pVwPk-bswCc",
     index: 4,
   },
   {
@@ -94,6 +100,7 @@ const formas: [Forma, ...Forma[]] = [
       "El viento: fuerza suave pero capaz de ser devastadora. Humildad y adaptabilidad.",
     descripcion:
       "Introduce mejumeok naeryeo chigi (golpe descendente con martillo), palkup chigi (codo) y la posición koa seogi cruzada.",
+    videoId: "V-7eMkACfeo",
     index: 5,
   },
   {
@@ -105,6 +112,7 @@ const formas: [Forma, ...Forma[]] = [
       "El agua: fluidez constante que supera cualquier obstáculo sin romperse.",
     descripcion:
       "Patada circular (dollyo chagi), defensa alta con canto de mano y batangson momtong makki. El desplazamiento debe ser continuo y sin cortes.",
+    videoId: "oDWZZr6NW1A",
     index: 6,
   },
   {
@@ -116,6 +124,7 @@ const formas: [Forma, ...Forma[]] = [
       "La montaña: estabilidad, ponderación y madurez. No se avanza por impulso.",
     descripcion:
       "Beom seogi (posición del tigre), juchum seogi, gawi makki (defensa en tijera), patada de rodilla y golpe doble de puño. Es la forma más rica en variedad técnica.",
+    videoId: "8FvUQOUdVbE",
     index: 7,
   },
   {
@@ -127,7 +136,19 @@ const formas: [Forma, ...Forma[]] = [
       "La tierra: raíz y fin del ciclo. Cierra el recorrido Taegeuk antes del cinturón negro.",
     descripcion:
       "Doble patada frontal en salto (dubal dangsang chagi), palkup dollyo chigi y combinaciones completas. Exige potencia, precisión y resistencia.",
+    videoId: "jLF9i1a-MWg",
     index: 8,
+  },
+  {
+    n: "Poomsae Koryo",
+    ko: "고려",
+    trigrama: "Koryo — Primera avanzada",
+    grado: "Avanzado",
+    significado: "Forma avanzada que continúa el estudio después de las ocho Taegeuk.",
+    descripcion:
+      "Consulta el video en español para estudiar la secuencia completa con acompañamiento del instructor.",
+    videoId: "lbqHWt7NHWc",
+    index: 9,
   },
 ];
 
@@ -155,14 +176,14 @@ function Poomsae() {
               Poomsae <span className="text-primary">Taegeuk</span>
             </h1>
             <p className="reveal mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-              Ocho formas basadas en los trigramas del I Ching. Cada una tiene
+              Ocho formas Taegeuk y Koryo basadas en los trigramas del I Ching. Cada una tiene
               un significado, un contenido técnico y un grado asociado.
               Selecciona una para ver su video.
             </p>
             <div className="mt-10 grid max-w-xl grid-cols-3 border-y border-border/70 py-5">
               <div>
                 <strong className="block font-display text-2xl text-primary">
-                  8
+                  9
                 </strong>
                 <span className="text-xs uppercase text-muted-foreground">
                   formas
@@ -214,7 +235,7 @@ function Poomsae() {
           <div className="poomsae-video aspect-video w-full bg-card lg:aspect-auto lg:min-h-[34rem]">
             <iframe
               className="h-full w-full"
-              src={`https://www.youtube.com/embed/videoseries?list=${PLAYLIST}&index=${activa.index}`}
+              src={`https://www.youtube.com/embed/${activa.videoId}`}
               title={`Video de ${activa.n}`}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -245,7 +266,7 @@ function Poomsae() {
               <p className="mt-2 text-muted-foreground">{activa.descripcion}</p>
 
               <a
-                href={`https://www.youtube.com/watch?v=rw_rt8oHnAs&list=${PLAYLIST}`}
+                href={`https://www.youtube.com/watch?v=${activa.videoId}&list=${PLAYLIST}`}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-8 inline-block border border-primary px-5 py-3 font-display text-xs uppercase tracking-[0.15em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
@@ -260,7 +281,7 @@ function Poomsae() {
       <section className="poomsae-index border-t border-border bg-card/40">
         <div className="mx-auto max-w-[90rem] px-6 py-12 sm:px-8 sm:py-16 lg:px-10">
           <p className="eyebrow">Referencia rápida</p>
-          <h2 className="mt-3 text-3xl uppercase">Las ocho Taegeuk</h2>
+          <h2 className="mt-3 text-3xl uppercase">Las ocho Taegeuk y Koryo</h2>
           <div className="mt-8 grid gap-px border border-border bg-border md:grid-cols-2">
             {formas.map((f, index) => (
               <button
@@ -288,6 +309,7 @@ function Poomsae() {
           </div>
         </div>
       </section>
+      <TechniqueAcademySection />
     </div>
   );
 }
