@@ -242,6 +242,14 @@
   color: var(--color-background);
 }
 
+.identity-lab__priority-timer {
+  margin-left: 0.35rem;
+  color: var(--color-muted-foreground);
+  font: 0.58rem var(--font-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .identity-lab__pyramid {
   display: flex;
   flex-direction: column;
@@ -256,11 +264,43 @@
   display: grid;
   gap: 1rem;
   align-items: center;
-  grid-template-columns: minmax(0, 1fr) minmax(10rem, 0.45fr);
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.55fr);
+}
+
+.identity-lab__pyramid-detail {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  align-items: start;
+  padding: 0.9rem 1rem;
+  border: 1px solid color-mix(in oklab, var(--color-primary) 38%, var(--color-border));
+  background: color-mix(in oklab, var(--color-card) 74%, transparent);
+  animation: focus-card-arrive 450ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.identity-lab__pyramid-detail > span {
+  color: var(--color-primary);
+  font: 1.45rem var(--font-display);
+}
+
+.identity-lab__pyramid-detail strong {
+  display: block;
+  font: 0.75rem var(--font-display);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.identity-lab__pyramid-detail p {
+  margin-top: 0.3rem;
+  color: var(--color-muted-foreground);
+  font-size: 0.75rem;
+  line-height: 1.55;
 }
 
 .identity-lab__pyramid-wrap > .interactive-symbol-scene {
-  min-height: 15rem;
+  min-width: 14rem;
+  min-height: 18rem;
   border: 1px solid var(--color-border);
 }
 
@@ -277,6 +317,7 @@
   text-transform: uppercase;
   transform: perspective(700px) rotateX(8deg);
   transition: width 450ms cubic-bezier(0.16, 1, 0.3, 1), background-color 300ms ease, color 300ms ease, transform 300ms ease;
+  cursor: pointer;
 }
 
 .identity-lab__level--1 { width: 34%; }
@@ -356,17 +397,16 @@
   transform: scale(1.05) rotate(-2deg);
 }
 
-.technique-visual__symbol span {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 8vw, 5rem);
-  line-height: 1;
-}
-
 .technique-visual__vocab-symbol {
   display: grid;
   gap: 0.25rem;
   justify-items: center;
   color: var(--color-primary);
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.technique-visual:hover .technique-visual__vocab-symbol {
+  transform: translateY(-0.15rem) scale(1.05);
 }
 
 .technique-visual__vocab-symbol svg {
@@ -377,16 +417,51 @@
   filter: drop-shadow(0 0 0.7rem rgb(190 74 61 / 28%));
 }
 
+.technique-visual__count-number {
+  display: grid;
+  width: 3.2rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font: 2rem var(--font-display);
+  line-height: 1;
+  box-shadow: inset 0 0 1rem rgb(255 255 255 / 5%), 0 0 1rem currentColor;
+}
+
 .technique-visual__vocab-symbol small {
   font: 0.55rem var(--font-display);
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
-.technique-visual__symbol svg {
-  position: absolute;
-  right: 0.75rem;
-  bottom: 0.75rem;
+.technique-visual__vocab-symbol--red { color: #d65b4e; }
+.technique-visual__vocab-symbol--blue { color: #769bc7; }
+.technique-visual__vocab-symbol--gold { color: #d2a35a; }
+.technique-visual__vocab-symbol--green { color: #82a98d; }
+.technique-visual__vocab-symbol--violet { color: #bd8ba8; }
+.technique-visual__vocab-symbol--orange { color: #d18a58; }
+
+.vocabulary-grid {
+  align-items: stretch;
+}
+
+.vocabulary-card {
+  min-height: 10.5rem;
+}
+
+.vocabulary-card .technique-visual {
+  min-height: 7rem;
+  align-self: stretch;
+}
+
+.vocabulary-card .technique-visual__symbol {
+  gap: 0.35rem;
+  padding: 0.8rem 0.4rem;
+}
+
+.vocabulary-related-grid a {
+  min-height: 8rem;
 }
 
 @media (max-width: 640px) {
@@ -408,6 +483,22 @@
 
   .identity-lab__pyramid-wrap > .interactive-symbol-scene {
     min-height: 13rem;
+  }
+
+  .identity-lab__pyramid-wrap > .interactive-symbol-scene canvas {
+    cursor: grab;
+  }
+
+  .identity-lab__pyramid-wrap > .interactive-symbol-scene canvas:active {
+    cursor: grabbing;
+  }
+
+  .identity-lab__pyramid-detail {
+    grid-column: auto;
+  }
+
+  .vocabulary-card {
+    min-height: 9.5rem;
   }
 }
 

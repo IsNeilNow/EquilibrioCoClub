@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InteractiveSymbolScene } from "@/components/taekwondo/InteractiveSymbolScene";
 
 type IdentityId = "cobra" | "rosa" | "taegeuk" | "cinturones";
@@ -70,8 +70,28 @@ const priorityLevels = [
 export function HomeIdentityLab() {
   const [activeIdentity, setActiveIdentity] = useState<IdentityId>("cobra");
   const [activePriority, setActivePriority] = useState(0);
+  const [secondsLeft, setSecondsLeft] = useState(8);
   const identity = identities.find(({ id }) => id === activeIdentity) ?? identities[0];
   const priority = priorityLevels[activePriority];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setSecondsLeft((current) => {
+        if (current <= 1) {
+          setActivePriority((selected) => (selected + 1) % priorityLevels.length);
+          return 8;
+        }
+        return current - 1;
+      });
+    }, 1000);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const selectPriority = (index: number) => {
+    setActivePriority(index);
+    setSecondsLeft(8);
+  };
 
   return (
     <section
@@ -133,7 +153,7 @@ export function HomeIdentityLab() {
               Pulsa cada nivel para recordar qué debe sostener tu camino antes
               de volver al dojang.
             </p>
-            <div className="mt-7 flex flex-wrap gap-2" role="tablist" aria-label="Niveles de prioridad">
+            <div className="mt-7 flex flex-wrap items-center gap-2" role="tablist" aria-label="Niveles de prioridad">
               {priorityLevels.map((level, index) => (
                 <button
                   key={level.title}
@@ -141,38 +161,56 @@ export function HomeIdentityLab() {
                   role="tab"
                   aria-selected={index === activePriority}
                   className="identity-lab__priority-button"
-                  onClick={() => setActivePriority(index)}
+                  onClick={() => selectPriority(index)}
                 >
                   {index + 1}
                 </button>
               ))}
+              <span className="identity-lab__priority-timer" aria-live="polite">
+                Siguiente nivel en {secondsLeft}s
+              </span>
             </div>
-            <p className="mt-6 font-display text-lg uppercase text-primary">
+            <p className="mt-6 font-display text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              Nivel seleccionado
+            </p>
+            <p className="mt-2 font-display text-lg uppercase text-primary" aria-live="polite">
               {priority.title}
             </p>
-            <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground" aria-live="polite">
               {priority.detail}
             </p>
           </div>
           <div className="identity-lab__pyramid-wrap">
             <div className="identity-lab__pyramid" aria-label="Pirámide interactiva de prioridades">
-              {priorityLevels.map((level, index) => (
+              {[...priorityLevels].reverse().map((level, displayIndex) => {
+                const priorityIndex = priorityLevels.length - 1 - displayIndex;
+                return (
                 <button
                   key={level.title}
                   type="button"
-                  className={`identity-lab__level identity-lab__level--${index + 1} ${index === activePriority ? "is-active" : ""}`}
-                  onClick={() => setActivePriority(index)}
-                  aria-label={`Nivel ${index + 1}: ${level.title}`}
+                  className={`identity-lab__level identity-lab__level--${displayIndex + 1} ${priorityIndex === activePriority ? "is-active" : ""}`}
+                  onClick={() => selectPriority(priorityIndex)}
+                  aria-pressed={priorityIndex === activePriority}
+                  aria-label={`Nivel ${priorityIndex + 1}: ${level.title}`}
                 >
                   <span>{level.title}</span>
                 </button>
-              ))}
+                );
+              })}
             </div>
             <InteractiveSymbolScene
               kind="taegeuk"
               priority={activePriority + 1}
               label={`Prioridad ${priority.title}`}
+              onPrioritySelect={selectPriority}
             />
+            <div className="identity-lab__pyramid-detail" aria-live="polite">
+              <span>{String(activePriority + 1).padStart(2, "0")}</span>
+              <div>
+                <strong>{priority.title}</strong>
+                <p>{priority.detail}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

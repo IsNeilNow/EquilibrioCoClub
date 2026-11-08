@@ -215,6 +215,7 @@ function Poomsae() {
           {formas.map((f, index) => (
             <button
               key={f.n}
+              type="button"
               onClick={() => setActiva(f)}
               data-poomsae-index={index}
               className={`poomsae-chip shrink-0 border px-4 py-2 font-display text-xs uppercase transition-all duration-300 ${
@@ -286,6 +287,7 @@ function Poomsae() {
             {formas.map((f, index) => (
               <button
                 key={f.n}
+                type="button"
                 onClick={() => setActiva(f)}
                 data-poomsae-index={index}
                 className="poomsae-row group grid w-full grid-cols-[auto_auto_minmax(0,1fr)] items-center gap-4 bg-background p-5 text-left transition-all duration-300 hover:bg-card"

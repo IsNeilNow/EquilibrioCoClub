@@ -9,7 +9,31 @@ type Props = {
   kind: InteractiveSymbolKind;
   label: string;
   priority?: number;
+  onPrioritySelect?: (index: number) => void;
 };
+
+function createCobraCurve() {
+  return new THREE.CatmullRomCurve3([
+    new THREE.Vector3(-0.15, -1.45, 0),
+    new THREE.Vector3(-0.55, -0.95, 0.02),
+    new THREE.Vector3(-0.2, -0.48, 0.03),
+    new THREE.Vector3(0.35, -0.12, 0.02),
+    new THREE.Vector3(0.12, 0.32, 0.02),
+    new THREE.Vector3(-0.22, 0.62, 0.03),
+    new THREE.Vector3(0.02, 0.88, 0.03),
+  ]);
+}
+
+function createCobraHoodShape() {
+  const hood = new THREE.Shape();
+  hood.moveTo(-0.95, -0.1);
+  hood.quadraticCurveTo(-0.8, 0.85, 0, 1.1);
+  hood.quadraticCurveTo(0.8, 0.85, 0.95, -0.1);
+  hood.quadraticCurveTo(0.55, 0.25, 0, 0.32);
+  hood.quadraticCurveTo(-0.55, 0.25, -0.95, -0.1);
+  hood.closePath();
+  return hood;
+}
 
 function AnimatedGroup({
   kind,
@@ -103,32 +127,79 @@ function AnimatedGroup({
   }
 
   return (
-    <group ref={group} rotation={[0, -0.3, 0]}>
-      <mesh position={[0, 0.15, 0]}>
-        <sphereGeometry args={[0.72, 24, 16]} />
-        <meshStandardMaterial color="#9b4036" metalness={0.38} roughness={0.38} />
+    <group ref={group} position={[0, -0.25, 0]} scale={0.72} rotation={[0, -0.3, 0]}>
+      <mesh>
+        <tubeGeometry args={[createCobraCurve(), 48, 0.2, 12, false]} />
+        <meshStandardMaterial color="#8f2f28" metalness={0.3} roughness={0.42} />
       </mesh>
-      <mesh position={[0, 0.95, 0]} scale={[0.75, 0.55, 0.5]}>
-        <sphereGeometry args={[0.7, 24, 16]} />
-        <meshStandardMaterial color="#b64a3f" metalness={0.35} roughness={0.38} />
+      <mesh position={[0.02, 0.94, 0]} scale={[0.82, 0.98, 0.28]}>
+        <sphereGeometry args={[0.82, 28, 20]} />
+        <meshStandardMaterial color="#c74639" metalness={0.22} roughness={0.38} />
       </mesh>
-      <mesh position={[0.28, 1.45, 0]} rotation={[0, 0, -0.35]}>
-        <coneGeometry args={[0.18, 0.72, 12]} />
-        <meshStandardMaterial color="#c84a3f" metalness={0.35} roughness={0.32} />
+      <mesh position={[0.02, 1.18, 0.34]}>
+        <shapeGeometry args={[createCobraHoodShape()]} />
+        <meshStandardMaterial
+          color="#742522"
+          metalness={0.18}
+          roughness={0.48}
+          side={THREE.DoubleSide}
+        />
       </mesh>
-      <mesh position={[0.16, 1.38, 0.17]}>
-        <sphereGeometry args={[0.07, 12, 8]} />
-        <meshStandardMaterial color="#f0d7b8" emissive="#c84a3f" emissiveIntensity={0.35} />
+      <mesh position={[-0.58, 1.2, 0.28]} rotation={[0, 0, -0.2]} scale={[0.42, 0.72, 0.18]}>
+        <sphereGeometry args={[0.75, 20, 14]} />
+        <meshStandardMaterial color="#8f2f28" metalness={0.2} roughness={0.46} />
       </mesh>
-      <mesh position={[0.2, 1.06, 0.15]} rotation={[0, 0, -0.6]}>
-        <coneGeometry args={[0.12, 0.55, 8]} />
-        <meshStandardMaterial color="#c84a3f" />
+      <mesh position={[0.62, 1.2, 0.28]} rotation={[0, 0, 0.2]} scale={[0.42, 0.72, 0.18]}>
+        <sphereGeometry args={[0.75, 20, 14]} />
+        <meshStandardMaterial color="#8f2f28" metalness={0.2} roughness={0.46} />
+      </mesh>
+      <mesh position={[0.02, 1.02, 0.1]} scale={[0.58, 0.9, 0.12]}>
+        <sphereGeometry args={[0.78, 24, 16]} />
+        <meshStandardMaterial color="#de5a46" metalness={0.15} roughness={0.42} />
+      </mesh>
+      <mesh position={[0.03, 1.45, 0.02]} scale={[0.52, 0.42, 0.38]}>
+        <sphereGeometry args={[0.72, 28, 20]} />
+        <meshStandardMaterial color="#b83a30" metalness={0.2} roughness={0.4} />
+      </mesh>
+      <mesh position={[-0.22, 1.53, 0.34]}>
+        <sphereGeometry args={[0.09, 16, 12]} />
+        <meshStandardMaterial color="#e7c56e" emissive="#7d3029" emissiveIntensity={0.3} />
+      </mesh>
+      <mesh position={[0.28, 1.53, 0.34]}>
+        <sphereGeometry args={[0.09, 16, 12]} />
+        <meshStandardMaterial color="#e7c56e" emissive="#7d3029" emissiveIntensity={0.3} />
+      </mesh>
+      <mesh position={[-0.22, 1.53, 0.41]}>
+        <sphereGeometry args={[0.035, 12, 8]} />
+        <meshStandardMaterial color="#120e0d" />
+      </mesh>
+      <mesh position={[0.28, 1.53, 0.41]}>
+        <sphereGeometry args={[0.035, 12, 8]} />
+        <meshStandardMaterial color="#120e0d" />
+      </mesh>
+      <mesh position={[-0.13, 1.27, 0.39]} rotation={[0, 0, Math.PI]}>
+        <coneGeometry args={[0.055, 0.28, 8]} />
+        <meshStandardMaterial color="#f0e2c7" />
+      </mesh>
+      <mesh position={[0.16, 1.27, 0.39]} rotation={[0, 0, Math.PI]}>
+        <coneGeometry args={[0.055, 0.28, 8]} />
+        <meshStandardMaterial color="#f0e2c7" />
+      </mesh>
+      <mesh position={[0.02, 1.19, 0.43]} scale={[0.55, 0.08, 0.04]}>
+        <sphereGeometry args={[0.25, 16, 8]} />
+        <meshStandardMaterial color="#5b1718" />
       </mesh>
     </group>
   );
 }
 
-function PriorityBlocks({ active }: { active: number }) {
+function PriorityBlocks({
+  active,
+  onSelect,
+}: {
+  active: number;
+  onSelect?: (index: number) => void;
+}) {
   const group = useRef<THREE.Group>(null);
   const colors = ["#9c4938", "#b89054", "#657b75", "#79514a", "#c84a3f"];
 
@@ -150,6 +221,22 @@ function PriorityBlocks({ active }: { active: number }) {
             position={[0, (index - 2) * 0.42, 0]}
             scale={level === active ? [1.06, 1.12, 1.06] : [1, 1, 1]}
             rotation-z={level === active ? Math.sin(index + active) * 0.025 : 0}
+            onClick={(event) => {
+              event.stopPropagation();
+              onSelect?.(index);
+            }}
+            onPointerOver={(event) => {
+              event.stopPropagation();
+              event.object.scale.setScalar(level === active ? 1.1 : 1.04);
+            }}
+            onPointerOut={(event) => {
+              event.stopPropagation();
+              event.object.scale.set(
+                level === active ? 1.06 : 1,
+                level === active ? 1.12 : 1,
+                level === active ? 1.06 : 1,
+              );
+            }}
           >
             <boxGeometry args={[width, 0.3, 0.7]} />
             <meshStandardMaterial
@@ -166,14 +253,22 @@ function PriorityBlocks({ active }: { active: number }) {
   );
 }
 
-export function InteractiveSymbolScene({ kind, label, priority }: Props) {
+export function InteractiveSymbolScene({ kind, label, priority, onPrioritySelect }: Props) {
+  const camera = priority
+    ? { position: [0, 0.1, 6.2] as [number, number, number], fov: 42 }
+    : { position: [0, 0.1, 4.7] as [number, number, number], fov: 34 };
+
   return (
     <div className="interactive-symbol-scene" aria-label={`${label}, modelo 3D interactivo`}>
-      <Canvas camera={{ position: [0, 0.1, 4.7], fov: 34 }} dpr={[1, 1.5]}>
+      <Canvas camera={camera} dpr={[1, 1.5]}>
         <ambientLight intensity={1.5} />
         <directionalLight position={[3, 4, 4]} intensity={3} color="#f3d9b7" />
         <pointLight position={[-3, 0, 2]} intensity={2} color="#b74439" />
-        {priority ? <PriorityBlocks active={priority} /> : <AnimatedGroup kind={kind} />}
+        {priority ? (
+          <PriorityBlocks active={priority} onSelect={onPrioritySelect} />
+        ) : (
+          <AnimatedGroup kind={kind} />
+        )}
         <OrbitControls enablePan={false} enableZoom={false} autoRotate autoRotateSpeed={0.8} />
       </Canvas>
       <span className="interactive-symbol-scene__hint">Arrastra para explorar</span>

@@ -155,13 +155,13 @@ function TerminoDetalle() {
           <h2 className="font-display text-sm uppercase tracking-[0.2em] text-primary">
             Relacionados · {termino.categoria}
           </h2>
-          <div className="mt-5 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
+          <div className="vocabulary-related-grid mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {relacionados.map((r) => (
               <Link
                 key={r.slug}
                 to="/vocabulario/$slug"
                 params={{ slug: r.slug }}
-                className="bg-background p-5 transition-colors hover:bg-card"
+                className="border border-border bg-background p-5 transition-all hover:-translate-y-1 hover:border-primary hover:bg-card"
               >
                 <p className="text-lg text-primary">{r.hangul}</p>
                 <p className="mt-1 font-display uppercase tracking-[0.1em]">

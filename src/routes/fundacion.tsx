@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import dojang from "@/assets/dojang.jpg";
 import tatianaPhoto from "@/assets/maestros/TatianaMaestra.jpeg";
 import paolaPhoto from "@/assets/maestros/PaolaMaestra.jpeg";
+import manuelaPhoto from "@/assets/maestros/ManuelaMaestra.jpeg";
+import andresPhoto from "@/assets/maestros/AndresMaestro.jpeg";
 import { ClubProgram } from "@/components/sections/HomeClubProgram";
 import { HomeIdentityLab } from "@/components/sections/HomeIdentityLab";
 import { HomeAcademyOverview } from "@/components/sections/HomeAcademyOverview";
@@ -35,7 +37,7 @@ export const Route = createFileRoute("/fundacion")({
 const maestros = [
   {
     nombre: "Nelson Andrés Pérez Zuluaga",
-    foto: undefined,
+    foto: andresPhoto,
     rango: "Maestro fundador",
     rol: "Fundador y creador de VAIPER",
     descripcion:
@@ -71,7 +73,7 @@ const maestros = [
   },
   {
     nombre: "Manuela Serna Velásquez",
-    foto: undefined,
+    foto: manuelaPhoto,
     rango: "Cinturón Negro 1.er Dan",
     rol: "Profesora",
     descripcion:
@@ -160,13 +162,13 @@ function Fundacion() {
                       <img
                         src={m.foto}
                         alt={`Retrato de ${m.nombre}`}
-                        width={56}
-                        height={56}
+                        width={88}
+                        height={88}
                         loading="lazy"
-                        className="h-14 w-14 shrink-0 rounded-full border border-border object-cover"
+                        className="h-20 w-20 shrink-0 rounded-2xl border border-primary/40 object-cover object-top shadow-[0_0_1.5rem_rgb(0_0_0_/_25%)] transition-transform duration-500 group-hover:scale-105 sm:h-[5.5rem] sm:w-[5.5rem]"
                       />
                     ) : (
-                      <span className="grid h-14 w-14 shrink-0 place-items-center rounded-full border border-dashed border-primary/60 font-display text-xs text-primary">
+                      <span className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl border border-dashed border-primary/60 font-display text-xs text-primary sm:h-[5.5rem] sm:w-[5.5rem]">
                         EQ
                       </span>
                     )}

@@ -1,28 +1,30 @@
-import arm1 from "@/assets/brazo/Básico 1.mp4";
-import arm2 from "@/assets/brazo/Básico 2 (1).mp4";
-import arm3 from "@/assets/brazo/Básico 3.mp4";
-import arm4 from "@/assets/brazo/Básico 4.mp4";
-import arm5 from "@/assets/brazo/Básico 5 (1).mp4";
-import foot1 from "@/assets/pie/Básico 1 (1).mp4";
-import foot2 from "@/assets/pie/Básico 2 (3).mp4";
-import foot3 from "@/assets/pie/Básico 3 (1).mp4";
-import foot4 from "@/assets/pie/Básico 4 (2).mp4";
-import foot5 from "@/assets/pie/Básico 5 (2).mp4";
-import floor1 from "@/assets/piso/Basicos piso (1).mp4";
+import arm1 from "@/assets/brazo/Básico1.mp4";
+import arm2 from "@/assets/brazo/Básico2.mp4";
+import arm3 from "@/assets/brazo/Básico3.mp4";
+import arm4 from "@/assets/brazo/Básico4.mp4";
+import arm5 from "@/assets/brazo/Básico5.mp4";
+import foot1 from "@/assets/pie/Básico1P.mp4";
+import foot2 from "@/assets/pie/Básico2P.mp4";
+import foot3 from "@/assets/pie/Básico3P.mp4";
+import foot4 from "@/assets/pie/Básico4P.mp4";
+import foot5 from "@/assets/pie/Básico5P.mp4";
+import floor1 from "@/assets/piso/Basicospiso.mp4";
 import { useState } from "react";
 
 type TechniqueCategory = "brazo" | "pie" | "piso";
 
 const techniques: Record<TechniqueCategory, readonly [string, string][]> = {
   brazo: [
-    ["Básico 1", arm1], ["Básico 2", arm2], ["Básico 3", arm3],
-    ["Básico 4", arm4], ["Básico 5", arm5],
+    ["Básico de brazo 1", arm1], ["Básico de brazo 2", arm2],
+    ["Básico de brazo 3", arm3], ["Básico de brazo 4", arm4],
+    ["Básico de brazo 5", arm5],
   ],
   pie: [
-    ["Básico 1", foot1], ["Básico 2", foot2], ["Básico 3", foot3],
-    ["Básico 4", foot4], ["Básico 5", foot5],
+    ["Básico de pie 1", foot1], ["Básico de pie 2", foot2],
+    ["Básico de pie 3", foot3], ["Básico de pie 4", foot4],
+    ["Básico de pie 5", foot5],
   ],
-  piso: [["Básicos de piso", floor1]],
+  piso: [["Básico de piso", floor1]],
 };
 
 const categoryDetails: Record<TechniqueCategory, { title: string; description: string }> = {

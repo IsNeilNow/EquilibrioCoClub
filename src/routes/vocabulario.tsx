@@ -57,7 +57,11 @@ function Vocabulario() {
       </p>
 
       <div className="mt-10 flex flex-wrap items-center gap-3">
+        <label htmlFor="vocabulario-busqueda" className="sr-only">
+          Buscar término
+        </label>
         <input
+          id="vocabulario-busqueda"
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
           placeholder="Buscar término…"
@@ -67,6 +71,8 @@ function Vocabulario() {
           {categorias.map((categoria) => (
             <button
               key={categoria}
+              type="button"
+              aria-pressed={categoriaSeleccionada === categoria}
               onClick={() => setCategoriaSeleccionada(categoria)}
               className={`border px-3 py-2 font-display text-xs uppercase tracking-[0.15em] transition-colors ${
                 categoriaSeleccionada === categoria
@@ -80,13 +86,13 @@ function Vocabulario() {
         </div>
       </div>
 
-      <div className="mt-10 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
+      <div className="vocabulary-grid mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {terminosFiltrados.map((termino) => (
           <Link
             key={termino.slug}
             to="/vocabulario/$slug"
             params={{ slug: termino.slug }}
-            className="group grid grid-cols-[7.5rem_1fr] gap-4 bg-background p-4 transition-colors duration-300 hover:bg-card"
+            className="vocabulary-card group grid grid-cols-[7.25rem_1fr] gap-4 border border-border bg-background p-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary/70 hover:bg-card"
           >
             <TechniqueVisual
               label={termino.romanizacion}
